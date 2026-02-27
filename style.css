@@ -1,0 +1,411 @@
+/* ألوان أهدأ للعين + تصاميم حركية مستوحاة من أفضل المواقع */
+:root {
+    --bg: #f8f6f1;
+    --bg-card: #fffefb;
+    --text: #3d3a35;
+    --text-muted: #6b6560;
+    --accent: #5a9a7d;
+    --accent-hover: #4a8569;
+    --accent-soft: rgba(90, 154, 125, 0.12);
+    --border: #e8e4dc;
+    --shadow: 0 2px 16px rgba(58, 52, 45, 0.06);
+    --shadow-hover: 0 12px 32px rgba(58, 52, 45, 0.1);
+    --radius: 14px;
+    --nav-height: 56px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+    font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+}
+
+[dir="ltr"] body {
+    font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+}
+
+/* —— التنقل —— */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(248, 246, 241, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s ease;
+}
+
+.nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.nav-logo:hover { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+.nav-link:hover { color: var(--accent); }
+
+.lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+.lang-toggle .lang-option {
+    padding: 0 0.2rem;
+    border-radius: 4px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.lang-toggle .lang-option:hover { color: var(--text); }
+.lang-toggle .lang-option.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+}
+.lang-sep { opacity: 0.5; }
+
+/* —— الهيرو مع حركة خفيفة —— */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4.5rem 1.5rem;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(165deg, var(--bg-card) 0%, var(--accent-soft) 50%, var(--bg) 100%);
+    opacity: 0.6;
+    animation: heroBg 12s ease-in-out infinite alternate;
+}
+@keyframes heroBg {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.05) translateY(-2%); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.15rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.hero-sub {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* —— ظهور عند التمرير (reveal) —— */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.5s ease;
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero .reveal { transition-duration: 0.8s; }
+
+/* —— المحتوى —— */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.section {
+    margin-bottom: 3.5rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+.section p, .about-text {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.skills {
+    margin-top: 1.5rem;
+}
+
+.skills h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+}
+
+.skills-list {
+    list-style: none;
+}
+
+.skills-list li {
+    padding: 0.45rem 0;
+    padding-inline-end: 1.25rem;
+    position: relative;
+    color: var(--text-muted);
+}
+
+.skills-list li::before {
+    content: "▪";
+    position: absolute;
+    inset-inline-end: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* —— شبكة المشاريع + حركة عند الـ hover —— */
+.projects-grid {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.project-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-soft);
+}
+
+.project-card h3 {
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+/* —— تواصل —— */
+.contact-section {
+    text-align: center;
+}
+
+.contact-intro {
+    margin-bottom: 1.25rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+/* —— التعليم —— */
+.education-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.education-card h3 {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+}
+
+.education-degree {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.education-place {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(90, 154, 125, 0.25);
+}
+
+.btn-linkedin {
+    background: #0a66c2;
+    color: #fff;
+}
+.btn-linkedin:hover { background: #004182; }
+
+.btn-email {
+    background: var(--accent);
+    color: #fff;
+}
+.btn-email:hover { background: var(--accent-hover); }
+
+.btn-github {
+    background: #24292f;
+    color: #fff;
+}
+.btn-github:hover { background: #1b1f23; }
+
+/* —— زر العودة للأعلى —— */
+.scroll-top {
+    position: fixed;
+    bottom: 1.5rem;
+    inset-inline-end: 1.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, background 0.2s ease;
+    z-index: 90;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.scroll-top-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* —— الفوتر —— */
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+/* —— متجاوب —— */
+@media (max-width: 600px) {
+    .nav-links {
+        gap: 0.75rem;
+    }
+    .nav-link { font-size: 0.85rem; }
+    .hero-title { font-size: 2rem; }
+    .tagline { font-size: 1rem; }
+    .contact-links { flex-direction: column; }
+    .btn { width: 100%; text-align: center; }
+    .scroll-top { bottom: 1rem; inset-inline-end: 1rem; }
+}
+
+/* —— تنبيه الرابط النشط في الشريط —— */
+.nav-link.active {
+    color: var(--accent);
+}
